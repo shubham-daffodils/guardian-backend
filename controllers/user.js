@@ -257,11 +257,9 @@ exports.forgetPassword = async (req, res) => {
 
     await user.save();
 
-    const resetUrl = `${req.protocol}://${req.get(
-      "host"
-    )}/api/vi1/password/reset/${resetToken}`;
+    const resetUrl = `mychat://reset/password/${resetToken}`;
 
-    const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, then ignore it.`;
+    const message = `Follow this link to reset your password:\n\n<a>${resetUrl}</a>\n\nIf you have not requested this email, then ignore it.`;
 
     try {
       await sendEmail({

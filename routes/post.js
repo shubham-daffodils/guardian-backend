@@ -9,6 +9,7 @@ const {
   getMyPosts,
   updatePost,
   recipientPost,
+  likePost,
 } = require("../controllers/post");
 const { isAuthenticated } = require("../middlewares/auth");
 const multerMiddleware = require("../middlewares/multerMiddleware");
@@ -25,6 +26,7 @@ router
   .get(isAuthenticated, getPost);
 router.get("/post", getPosts);
 router.route("/me/post").get(isAuthenticated, getMyPosts);
+router.route("/post/like/:id").get(isAuthenticated, likePost);
 router.route("/post/recipient/:id").get(isAuthenticated, recipientPost);
 router
   .route("/post/comment/:id")
